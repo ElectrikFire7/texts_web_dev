@@ -10,13 +10,15 @@ router.post("/signin", async (request, response) => {
             return response.status(400).send({message: 'Send all required fields'})
         }
 
-        const existingUser = await User.findOne(request.body.username);
+        const { username, password } = request.body
+
+        const existingUser = await User.findOne({ username });
 
         if (existingUser) {
             return response.status(400).send({ message: 'Username already exists' });
         }
 
-        const hashedPassword = await bcrypt.hash(request.body.password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = {
             username: request.body.username,
