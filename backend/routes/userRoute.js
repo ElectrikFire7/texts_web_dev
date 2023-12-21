@@ -10,7 +10,7 @@ router.post("/signin", async (request, response) => {
             return response.status(400).send({message: 'Send all required fields'})
         }
 
-        const existingUser = await User.findOne(request.body.user);
+        const existingUser = await User.findOne(request.body.username);
 
         if (existingUser) {
             return response.status(400).send({ message: 'Username already exists' });
