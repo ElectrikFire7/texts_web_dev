@@ -1,10 +1,15 @@
-import express, { request, response } from "express";
+import express from "express";
 import { Text } from "../models/textModel.js";
 
 const router = express.Router();
 
 router.post("/", async (request, response) => {
     try {
+        if(!request.body.sender || !request.body.content){
+            
+            return response.status(400).send({ message: 'Send all required fields'})
+        }
+        
         const newText = {
             sender: request.body.sender,
             content: request.body.content,
@@ -12,6 +17,14 @@ router.post("/", async (request, response) => {
 
         const text = await Text.create(newText);
         console.log("message dropped");
+
+        const textCount = await Text.countDocuments({});
+
+        if (textCount > 10) {
+            // Find the oldest text and remove it
+            const oldestText = await Text.findOneAndDelete({}, { sort: { createdAt: 1 } });
+            console.log("Deleted oldest text:", oldestText);
+          }
 
         return response.status(201).send(text);
 

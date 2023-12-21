@@ -16,4 +16,6 @@ const textSchema = mongoose.Schema(
     }
 )
 
+textSchema.index({ createdAt: -1 });
+
 export const Text = mongoose.model("Text", textSchema);
