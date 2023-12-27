@@ -3,7 +3,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../assets/texts.css'
 
-const home = () => {
+const Homes = () => {
     const [texts, setTexts] = useState([]);
     const [newText, setNewText] = useState('');
     const location = useLocation();
@@ -85,4 +85,4 @@ const home = () => {
     )
 }
 
-export default home;
+export default Homes;
