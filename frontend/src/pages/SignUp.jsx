@@ -8,8 +8,11 @@ const SignUp = () => {
     const [newUsername, setUsername] = useState('');
     const [newPassword, setPassword] = useState('');
     const [signUpError, setSignUpError] = useState('');
+    const [isLoading, setIsLoading] = useState(false); 
 
     const handleSendCreds = () => {
+        setIsLoading(true);
+        
         axios.post('https://texttut.onrender.com/user/signin', {username: newUsername, password: newPassword})
             .then( response => {
                 console.log('Sign-Up successful', response.data);
@@ -19,6 +22,9 @@ const SignUp = () => {
             .catch( error => {
                 console.error("error: ", error);
                 setSignUpError('Username already exists');
+            })
+            .finally(() => {
+                setIsLoading(false); // Set loading state to false after request completes
             });
     }
 
@@ -46,7 +52,7 @@ const SignUp = () => {
                 id = "textBar"
             />
 
-            <button onClick={handleSendCreds} id = "lisu">Sign-Up</button>
+            <button onClick={handleSendCreds} id = "lisu" disabled={isLoading}>isLoading ? 'Loading...' : 'Sign-Up'</button>
 
             {signUpError && <p>{signUpError}</p>}
 

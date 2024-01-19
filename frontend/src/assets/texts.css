@@ -4,7 +4,7 @@
     width: 100vw;
     height: 100vh;
     margin: 0;
-    background: url('pattern3.jpg');
+    background: url('wp8271497-amazing-1920x1080-wallpapers.jpg');
     overflow: hidden;
     overflow-y: auto;
 }
@@ -35,6 +35,7 @@
 }
 
 #ul {
+    padding-top: 45px;
     list-style-type: none; 
     padding-bottom: 65px; 
 }
@@ -46,7 +47,7 @@
     left: 0;
     width: 100%;
     padding: 10px;
-    background-color: rgb(28, 0, 168);
+    background-color: rgb(62, 62, 255);
     border: 3px solid black;
     border-radius: 5px;
 }
@@ -57,7 +58,7 @@
     color: white;
     background-color: grey;
     border: 3px solid black;
-    border-radius: 10px;
+    border-radius: 2px;
 }
 
 #sendbutton{
@@ -68,4 +69,30 @@
     color: green;
     background-color: bisque;
     border: 3px solid black;
+}
+
+.navBar{
+    position: fixed;
+    width: 100%;
+    flex: 1;
+    top:0;
+    background-color:rgb(62, 62, 255);
+    border: 3px solid black;
+    border-radius: 2px;
+}
+
+.tabButton{
+    margin-left: 10px;
+    height: 50px;
+    width: 100px;
+    color: white;
+    background-color: rgb(62, 62, 255);
+}
+
+.currentTabButton{
+    margin-left: 10px;
+    height: 50px;
+    width: 100px;
+    color: white;
+    background-color:red;
 }

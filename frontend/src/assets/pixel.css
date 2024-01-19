@@ -1,0 +1,47 @@
+#pixelboard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background: url('wp8271436-amazing-1920x1080-wallpapers.jpg');
+    overflow: hidden;
+    overflow-y: auto;
+    filter: brightness(0.7);
+}
+
+#infobox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-color: black;
+    border-width: 2px; 
+    border-radius: 5px;
+    font-size: medium;
+    color: white;
+    background: rgb(62, 62, 255);
+}
+
+#rgb{
+    width: 70px;
+    height: 20 px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border-color:black;
+    border-width: 2px;
+}
+
+#rgbbar{
+    padding: 5px;
+    margin: 30px;
+    background: rgb(62, 62, 255);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border-color:black;
+    border-width: 2px;
+}

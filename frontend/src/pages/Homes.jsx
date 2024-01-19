@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import axios from "axios";
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../assets/texts.css'
 
 const Homes = () => {
+    const navigate = useNavigate();
     const [texts, setTexts] = useState([]);
     const [newText, setNewText] = useState('');
     const location = useLocation();
     const username = location.state?.userData?.username ?? "non-user";
+    const messagesEndRef = useRef(null);
 
     if(username === "non-user"){
         const navigate = useNavigate();
@@ -22,11 +24,8 @@ const Homes = () => {
         const fetchdata = () => {
             axios.get('https://texttut.onrender.com/text')
                 .then(response => {
-                    console.log(response.data);
                     setTexts(response.data);
-                    console.log(texts);
                 })
-                .then()
                 .catch(error => {
                     console.error('Error fetching messages:', error);
                 });
@@ -34,15 +33,22 @@ const Homes = () => {
 
         fetchdata();
 
-        const intervalId = setInterval(fetchdata, 10000);
+        const intervalId = setInterval(fetchdata, 5000);
 
         return () => clearInterval(intervalId);
     }, [username]);
 
+    useEffect(() => {
+        scrollToBottom();
+    }, [texts]);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
 
     const handleSendText = () => {
         axios.post('https://texttut.onrender.com/text', {sender: username, content: newText})
-            .then( () => {
+            .then(() => {
                 axios.get('https://texttut.onrender.com/text')
                     .then(response => {
                         setTexts(response.data);
@@ -55,9 +61,16 @@ const Homes = () => {
                 console.error('Error fetching messages:', error);
             })
     };
+
+    const handlePixelBoardClick = () => {
+        navigate('/pixel', { state: { userData: { username } } });
+    };
+    
   
     return (
         <div id="homediv">
+            <div className='navBar'><button className='currentTabButton'>Global Chat</button> <button className='tabButton' onClick={handlePixelBoardClick}>PixelBoard</button></div>
+
             <ul id="ul">
                 {texts.slice().reverse().map(text => {
                     return (
@@ -69,8 +82,9 @@ const Homes = () => {
                         </li>
                     )
                 })}
+                <div ref={messagesEndRef} />
             </ul>
-
+            
             <div id="send">
                 <input
                     type="text"
