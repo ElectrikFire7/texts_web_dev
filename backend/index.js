@@ -3,6 +3,7 @@ import {PORT, mongoDBURL} from "./config.js"
 import mongoose from "mongoose";
 import  textRoute  from "./routes/textRoute.js"
 import userRoute from "./routes/userRoute.js"
+import pixelRoute from "./routes/pixelRoute.js"
 import cors from "cors";
 
 const app = express();
@@ -13,7 +14,8 @@ app.use(cors());
 
 //for routes
 app.use("/text", textRoute);
-app.use("/user", userRoute)
+app.use("/user", userRoute);
+app.use("/pixelboard", pixelRoute);
 
 mongoose
     .connect(mongoDBURL)

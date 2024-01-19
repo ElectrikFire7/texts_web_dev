@@ -20,7 +20,7 @@ router.post("/", async (request, response) => {
 
         const textCount = await Text.countDocuments({});
 
-        if (textCount > 10) {
+        if (textCount > 20) {
             // Find the oldest text and remove it
             const oldestText = await Text.findOneAndDelete({}, { sort: { createdAt: 1 } });
             console.log("Deleted oldest text:", oldestText);
