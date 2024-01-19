@@ -39,7 +39,7 @@ router.get("/", async (request, response) => {
         // Find the latest 10 entries, sorted by the creation date in descending order
         const latestTexts = await Text.find({})
           .sort({ createdAt: -1 }) // Sort in descending order based on creation date
-          .limit(10);
+          .limit(20);
     
         return response.json(latestTexts);
       } 
