@@ -52,7 +52,7 @@ const SignUp = () => {
                 id = "textBar"
             />
 
-            <button onClick={handleSendCreds} id = "lisu" disabled={isLoading}>isLoading ? 'Loading...' : 'Sign-Up'</button>
+            <button onClick={handleSendCreds} id = "lisu" disabled={isLoading}>{isLoading ? 'Loading...' : 'Sign-Up'}</button>
 
             {signUpError && <p>{signUpError}</p>}
 

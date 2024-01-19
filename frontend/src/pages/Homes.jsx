@@ -33,7 +33,7 @@ const Homes = () => {
 
         fetchdata();
 
-        const intervalId = setInterval(fetchdata, 5000);
+        const intervalId = setInterval(fetchdata, 2000);
 
         return () => clearInterval(intervalId);
     }, [username]);
