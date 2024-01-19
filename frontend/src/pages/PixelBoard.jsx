@@ -28,7 +28,7 @@ const PixelBoard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:443/pixelboard'); 
+                const response = await axios.get('https://texttut.onrender.com/pixelboard'); 
                 const pixelData = response.data;
 
                 const updatedGrid = Array.from({ length: rows }, () => Array(columns));
@@ -59,7 +59,7 @@ const PixelBoard = () => {
     const handleColorChange = (row, col) => {
         const { r, g, b } = rgbValues;
 
-        axios.post('http://localhost:443/pixelboard', { row, col, r, g, b })
+        axios.post('https://texttut.onrender.com/pixelboard', { row, col, r, g, b })
             .then(response => {
             })
             .catch(error => {
